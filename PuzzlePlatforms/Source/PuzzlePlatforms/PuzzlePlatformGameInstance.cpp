@@ -31,12 +31,26 @@ void UPuzzlePlatformGameInstance::Init()
 
 void UPuzzlePlatformGameInstance::LoadMenu()
 {
-	if (MenuClass.GetDefaultObject() != NULL)
+	if (MenuClass.GetDefaultObject() == NULL)
 	{
-		UUserWidget* Menu = CreateWidget<UUserWidget>(this, MenuClass);
+		UE_LOG(LogTemp, Error, TEXT("No Menu class found!"));
+		return;
+	}
+	
+	UUserWidget* Menu = CreateWidget<UUserWidget>(this, MenuClass);
+	APlayerController* PController = GetFirstLocalPlayerController();
+
+	if (Menu && PController)
+	{
+		FInputModeUIOnly InputModeData;
+		InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+		InputModeData.SetWidgetToFocus(Menu->TakeWidget());
 
 		Menu->AddToViewport();
+		PController->SetInputMode(InputModeData);
+		PController->SetShowMouseCursor(true);
 	}
+	
 }
 
 void UPuzzlePlatformGameInstance::Host()
