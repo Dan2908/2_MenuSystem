@@ -7,6 +7,7 @@
 #include "Blueprint/UserWidget.h"
 #include "MainMenu.generated.h"
 
+class IMenuInterface;
 /**
  * 
  */
@@ -14,6 +15,14 @@ UCLASS()
 class PUZZLEPLATFORMS_API UMainMenu : public UUserWidget
 {
 	GENERATED_BODY()
+
+public:
+
+	void SetMenuInterface(IMenuInterface* Interface);
+
+	void Setup();
+
+	void TearDown();
 
 protected:
 
@@ -29,5 +38,7 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	class UButton* BTN_Join;
+
+	IMenuInterface* MenuInterface;
 	
 };
