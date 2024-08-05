@@ -4,6 +4,7 @@
 #include "MainMenu.h"
 
 #include "Components/Button.h"
+#include "Components/WidgetSwitcher.h"
 #include "PuzzlePlatforms/PuzzlePlatformGameInstance.h"
 
 
@@ -15,6 +16,8 @@ bool UMainMenu::Initialize()
 	}
 
 	BTN_Host->OnClicked.AddDynamic(this, &UMainMenu::HostServer);
+	BTN_Join->OnClicked.AddDynamic(this, &UMainMenu::OpenJoinMenu);
+	BTN_JoinCancel->OnClicked.AddDynamic(this, &UMainMenu::OpenMainMenu);
 
 	return true;
 }
@@ -67,5 +70,21 @@ void UMainMenu::HostServer()
 	if (MenuInterface)
 	{
 		MenuInterface->Host();
+	}
+}
+
+void UMainMenu::OpenJoinMenu()
+{
+	if (ensure(MenuSwitcher) && ensure(JoinMenu))
+	{
+		MenuSwitcher->SetActiveWidget(JoinMenu);
+	}
+}
+
+void UMainMenu::OpenMainMenu()
+{
+	if (ensure(MenuSwitcher) && ensure(MainMenu))
+	{
+		MenuSwitcher->SetActiveWidget(MainMenu);
 	}
 }

@@ -31,6 +31,12 @@ protected:
 	UFUNCTION()
 	void HostServer();
 
+	UFUNCTION()
+	void OpenJoinMenu();
+
+	UFUNCTION()
+	void OpenMainMenu();
+
 private:
 
 	UPROPERTY(meta = (BindWidget))
@@ -38,6 +44,19 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	class UButton* BTN_Join;
+
+	UPROPERTY(meta = (BindWidget))
+	class UButton* BTN_JoinCancel;
+
+	UPROPERTY(meta = (BindWidget))
+	class UWidgetSwitcher* MenuSwitcher;
+
+	UPROPERTY(meta = (BindWidget))
+	class UWidget* MainMenu;
+
+	UPROPERTY(meta = (BindWidget))
+	class UWidget* JoinMenu;
+
 
 	IMenuInterface* MenuInterface;
 	
