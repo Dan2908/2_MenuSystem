@@ -37,6 +37,9 @@ protected:
 	UFUNCTION()
 	void OpenMainMenu();
 
+	UFUNCTION()
+	void ConfirmJoin();
+
 private:
 
 	UPROPERTY(meta = (BindWidget))
@@ -47,6 +50,12 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	class UButton* BTN_JoinCancel;
+
+	UPROPERTY(meta = (BindWidget))
+	class UButton* BTN_JoinConfirm;
+
+	UPROPERTY(meta = (BindWidget))
+	class UEditableTextBox* TXTB_IPAddress;
 
 	UPROPERTY(meta = (BindWidget))
 	class UWidgetSwitcher* MenuSwitcher;

@@ -26,11 +26,12 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void LoadMenu();
 
+	//~ Start IMenuInterface
 	UFUNCTION(Exec)
 	virtual void Host() override;
-
 	UFUNCTION(Exec)
-	void Join(const FString& Address);
+	virtual void Join(const FString& Address) override;
+	//~ End IMenuInterface
 
 	TSubclassOf<class UUserWidget> MenuClass;
 
